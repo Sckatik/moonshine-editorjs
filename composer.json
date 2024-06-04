@@ -1,0 +1,17 @@
+{
+    "name": "sckatik/editor-js",
+    "description": "EditorJs block editor for MoonShine",
+    "minimum-stability": "stable",
+    "keywords": ["laravel", "framework"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dmitriy Simakov",
+            "email": "sckat@yandex.ru",
+            "homepage": "https://github.com/Sckatik/"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    }
+}
