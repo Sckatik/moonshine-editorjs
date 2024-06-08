@@ -1,8 +1,11 @@
 {
-    "name": "sckatik/editor-js",
+    "name": "sckatik/moonshine-editorjs",
+    "version": "1.0.0",
     "description": "EditorJs block editor for MoonShine",
-    "minimum-stability": "stable",
-    "keywords": ["laravel", "framework"],
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -12,6 +15,33 @@
         }
     ],
     "require": {
-        "php": "^8.2"
+        "php": "^8.2",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-dom": "*",
+        "codex-team/editor.js": "*",
+        "guzzlehttp/guzzle": "^7.0",
+        "illuminate/events": "^10.0 || ^11.0",
+        "spatie/image": "^3.0",
+        "ext-fileinfo": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5.8",
+        "mockery/mockery": "^1.4.4",
+        "phpstan/phpstan": "^1.4.7",
+        "orchestra/testbench": "^4.0|^5.0|^6.0|^7.0|^8.0",
+        "brianium/paratest": "^6.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sckatik\\MoonshineEditorJs\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sckatik\\MoonshineEditorJs\\Providers\\MoonshineEditorJsServiceProvider"
+            ]
+        }
     }
 }
