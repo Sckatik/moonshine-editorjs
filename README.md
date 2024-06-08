@@ -2,14 +2,14 @@
 
 ## Demo
 
-You can can play with the demo [here](https://github.com/alaminfirdows/laravel-editorjs-demo)
+You can can play with the demo [here](https://editorjs.io/)
 
 ## Installation
 
 Install via composer:
 
 ```
-composer require sckatik/editor-js
+composer require sckatik/moonshine-editorjs
 ```
 
 Publish the config file
