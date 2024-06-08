@@ -44,6 +44,7 @@ To output data from EditorJs, use the following methods:
 
 ```php
 use App\Models\Post;
+use Sckatik\MoonshineEditorJs\Facades\RenderEditorJs;
 $post = Post::find(1);
 echo RenderEditorJs::render($post->body);
 ```
@@ -56,7 +57,7 @@ Defining An Accessor
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use AlAminFirdows\LaravelEditorJs\Facades\LaravelEditorJs;
+use Sckatik\MoonshineEditorJs\Facades\RenderEditorJs;
 
 class Post extends Model
 {
