@@ -1,12 +1,16 @@
 {
     "name": "sckatik/moonshine-editorjs",
-    "version": "1.0.0",
     "description": "EditorJs block editor for MoonShine",
     "keywords": [
-        "laravel",
-        "framework"
+        "moonshine",
+        "editorJs"
     ],
+    "type": "library",
     "license": "MIT",
+    "support": {
+        "issues": "https://github.com/Sckatik/moonshine-editorjs/issues",
+        "source": "https://github.com/Sckatik/moonshine-editorjs"
+    },
     "authors": [
         {
             "name": "Dmitriy Simakov",
@@ -36,6 +40,13 @@
         "psr-4": {
             "Sckatik\\MoonshineEditorJs\\": "src/"
         }
+    },
+    "conflict": {
+        "moonshine/moonshine": "<1.52"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
     },
     "extra": {
         "laravel": {
