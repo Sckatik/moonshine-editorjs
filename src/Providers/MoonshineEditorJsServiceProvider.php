@@ -46,6 +46,12 @@ final class MoonshineEditorJsServiceProvider extends ServiceProvider
                 'views/vendor/moonshine-editorjs/blocks'
             ),
         ], 'moonshine-editorjs-views-render-blocks');
+
+        $this->publishes([
+            __DIR__ . '/../../resources/views/fields' => $this->app->resourcePath(
+                'views/vendor/moonshine-editorjs/fields'
+            ),
+        ], 'moonshine-editorjs-views-fields');
         //
     }
 
