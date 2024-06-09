@@ -38,7 +38,7 @@ final class MoonshineEditorJsServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'moonshine-editor-js-views');
 
         $this->publishes([
-            __DIR__ . '/../../public/vendor/moonshine-editorjs' => public_path('vendor/moonshine-editorjs'),
+            __DIR__ . '/../../public/vendor' => public_path('vendor/moonshine-editorjs'),
         ], 'moonshine-editorjs-assets');
 
         $this->publishes([
