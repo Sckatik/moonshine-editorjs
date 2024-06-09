@@ -183,6 +183,16 @@ return [
                             'required' => false,
                         ],
                         'url' => 'string',
+                        'thumbnails' => [
+                            'type' => 'array',
+                            'required' => false,
+                            'data' => [
+                                '-' => [
+                                    'type' => 'string',
+                                ],
+                            ],
+                        ],
+
                     ],
                 ],
                 'caption' => [
