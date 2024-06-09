@@ -9,33 +9,51 @@ You can can play with the demo [here](https://editorjs.io/)
 Install via composer:
 
 ```
-composer require sckatik/moonshine-editorjs
+ composer require sckatik/moonshine-editorjs
 ```
 
 Publish the config file
 
 ```
-php artisan vendor:publish --tag="moonshine-editorjs-config"
+ php artisan vendor:publish --tag="moonshine-editorjs-config"
 ```
 
 Publish assets be sure to publish without them the editor will not work
 
 ```
-php artisan vendor:publish --tag="moonshine-editorjs-assets"
+ php artisan vendor:publish --tag="moonshine-editorjs-assets"
 ```
 
 Optionally, you can publish the views if you want to change the appearance of the fields that are output from the
 editorJs
 
 ```
-php artisan vendor:publish --tag="moonshine-editorjs-views-render-blocks"
+ php artisan vendor:publish --tag="moonshine-editorjs-views-render-blocks"
 ```
+
+You can also connect the necessary components or your own in editorJs. To do this, publish views
+
+```
+ php artisan vendor:publish --tag="moonshine-editorjs-views-fields"
+```
+
+In the view editorJs.blade.php remove the line
+
+```
+{{ Vite::useHotFile('vendor/moonshine-editorjs/moonshine-editorjs.hot')
+->useBuildDirectory("vendor/moonshine-editorjs")
+->withEntryPoints(['resources/css/field.css', 'resources/js/field.js']) }}
+```
+
+and connect your js with a set of its components EditorJs
 
 ## Config
 
 You can disable or enable the necessary blocks in the editor.
-In config/moonshine-editor-js.php
-in the configuration block - toolSettings
+In config/moonshine-editor-js.php in the configuration block - toolSettings
+
+In config/moonshine-editor-js.php in the configuration block - renderSettings You can customize the rendering rules from
+EditorJs data
 
 ## Usage
 
