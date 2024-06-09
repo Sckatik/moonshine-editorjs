@@ -2,6 +2,7 @@
     "name": "sckatik/moonshine-editorjs",
     "description": "EditorJs block editor for MoonShine",
     "keywords": [
+        "laravel",
         "moonshine",
         "editorJs"
     ],
