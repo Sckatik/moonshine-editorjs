@@ -9,9 +9,9 @@
     if ($data['withBackground']){
     $classes .= ' image--backgrounded';
     }
-    //small image
+    //small image maybe a few take the first element
     $thumbnail = '';
-    if ($data['file']['thumbnails']){
+    if (isset($data['file']['thumbnails'])){
         $thumbnail = $data['file']['thumbnails'][0];
     }
 @endphp
