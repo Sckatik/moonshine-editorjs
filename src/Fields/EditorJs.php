@@ -8,5 +8,5 @@ use MoonShine\Fields\Textarea;
 
 class EditorJs extends Textarea
 {
-    protected string $view = 'moonshine-editor-js-views::fields.editorJs';
+    protected string $view = 'moonshine-editorjs::fields.editorJs';
 }

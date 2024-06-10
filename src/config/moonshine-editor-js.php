@@ -125,7 +125,7 @@ return [
                 'level' => [1, 2, 3, 4, 5, 6],
             ],
             'list' => [
-                'type' => [
+                'style' => [
                     0 => 'ordered',
                     1 => 'unordered',
                 ],

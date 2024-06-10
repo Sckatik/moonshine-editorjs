@@ -26,18 +26,15 @@ Publish assets be sure to publish without them the editor will not work
 
 Optionally, you can publish the views if you want to change the appearance of the fields that are output from the
 editorJs
+In views blocks
 
 ```
- php artisan vendor:publish --tag="moonshine-editorjs-views-render-blocks"
+ php artisan vendor:publish --tag="moonshine-editorjs"
 ```
 
-You can also connect the necessary components or your own in editorJs. To do this, publish views
+You can also connect the necessary components or your own in editorJs.
 
-```
- php artisan vendor:publish --tag="moonshine-editorjs-views-fields"
-```
-
-In the view editorJs.blade.php remove the line
+In the view fields/editorJs.blade.php remove the line
 
 ```
 {{ Vite::useHotFile('vendor/moonshine-editorjs/moonshine-editorjs.hot')

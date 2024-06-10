@@ -24,15 +24,15 @@ final class RenderEditorJs
     {
         try {
             $configJson = json_encode(config('moonshine-editor-js.renderSettings') ?: []);
-            
+
             $editor = new EditorJS($data, $configJson);
 
             $renderedBlocks = [];
             foreach ($editor->getBlocks() as $block) {
-                $viewName = "moonshine-editor-js-views::blocks." . Str::snake($block['type'], '-');
+                $viewName = "moonshine-editorjs::blocks." . Str::snake($block['type'], '-');
 
                 if (!View::exists($viewName)) {
-                    $viewName = 'moonshine-editor-js-views::blocks.not-found';
+                    $viewName = 'moonshine-editorjs::blocks.not-found';
                 }
 
                 $renderedBlocks[] = View::make($viewName, [
