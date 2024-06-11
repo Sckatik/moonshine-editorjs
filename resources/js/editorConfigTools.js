@@ -8,23 +8,18 @@ import Table from '@editorjs/table';
 import CustomImage from './components/customImage.js';
 import InlineCode from '@editorjs/inline-code';
 import RawTool from '@editorjs/raw';
-import Paragraph from '@editorjs/paragraph';
 import Quote from '@editorjs/quote';
 import Marker from '@editorjs/marker';
-import Link from '@editorjs/link';
+import LinkTool from '@editorjs/link';
 
 export default class EditorConfigTools {
 
     static get getTools() {
-        // const csrfToken = document.querySelector('input[name="_token"]').value;
-        const tools = {
-            paragraph: {
-                class: Paragraph, inlineToolbar: true
-            },
-        }
+        const tools = {}
         if (editorJsConf.header.activated) {
             tools.header = {
-                class: Header, shortcut: editorJsConf.header.shortcut
+                class: Header,
+                shortcut: editorJsConf.header.shortcut
             };
         }
         if (editorJsConf.list.activated) {
@@ -83,15 +78,20 @@ export default class EditorConfigTools {
             };
         }
         if (editorJsConf.link.activated) {
-            tools.link = {
-                class: Link, config: {
+            tools.linkTool = {
+                class: LinkTool,
+                config: {
                     endpoint: '/moonshine/editor-js-field/fetch/url',
-                }, shortcut: editorJsConf.link.shortcut
+                },
+                inlineToolbar: false,
+                shortcut: editorJsConf.link.shortcut
             };
         }
         if (editorJsConf.inlineCode.activated) {
             tools.inlineCode = {
-                class: InlineCode, shortcut: editorJsConf.inlineCode.shortcut
+                class: InlineCode,
+                inlineToolbar: false,
+                shortcut: editorJsConf.inlineCode.shortcut
             };
         }
 

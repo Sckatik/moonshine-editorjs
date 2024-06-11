@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Sckatik\MoonshineEditorJs\Support;
 
 use DOMDocument;
-use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Http;
@@ -17,8 +16,8 @@ final class LoadDataByLink
     {
         // Contents
         try {
-            $response = Http::connectTimeout(3)->get($url)->throw();
-        } catch (ConnectionException|RequestException) {
+            $response = Http::get($url)->throw();
+        } catch (RequestException) {
             return response()->json([
                 'success' => 0,
             ]);

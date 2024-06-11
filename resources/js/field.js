@@ -4,8 +4,8 @@ import EditorConfigTools from './editorConfigTools.js';
 window.addEventListener("DOMContentLoaded", async (event) => {
     //тут надо посмотреть есть ли на странице textarea с атрибутом type
     const data = JSON.parse(document.querySelector('[data-type="editor-js"]').value || "{}");
-    // const ImageTool = window.ImageTool;
     const editor = new EditorJS({
+        // readOnly: false,
         holder: "editorjs",
         tools: EditorConfigTools.getTools,
         /**
@@ -62,7 +62,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
                     "Marker": "Маркер",
                     "Bold": "Полужирный",
                     "Italic": "Курсив",
-                    "InlineCode": "Моноширинный",
+                    "InlineCode": "Фрагмент кода (выделить)",
                     "Image": "Картинка"
                 },
 

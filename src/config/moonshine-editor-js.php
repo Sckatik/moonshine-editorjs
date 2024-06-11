@@ -149,8 +149,9 @@ return [
                         ],
                         'description' => [
                             'type' => 'string',
+                            'required' => false
                         ],
-                        'url' => [
+                        'imageUrl' => [
                             'type' => 'string',
                             'required' => false,
                         ],
