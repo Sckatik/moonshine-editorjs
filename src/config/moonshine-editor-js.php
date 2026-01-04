@@ -273,7 +273,25 @@ return [
                     'type' => 'string',
                     'allowedTags' => '*',
                 ],
-            ]
+            ],
+            'checklist' => [
+                'items' => [
+                    'type' => 'array',
+                    'data' => [
+                        '-' => [
+                            'type' => 'array',
+                            'data' => [
+                                'text' => [
+                                    'type' => 'string',
+                                ],
+                                'checked' => [
+                                    'type' => 'boolean',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
             // 'attaches'  => [
             //     'file'  => [
             //         'type' => 'array',
