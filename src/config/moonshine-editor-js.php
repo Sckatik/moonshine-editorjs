@@ -8,6 +8,26 @@ return [
      * Configure tools
      */
     'toolSettings' => [
+        'paragraph' => [
+            'activated' => true,
+            'shortcut' => 'CMD+SHIFT+D',
+            'alignment' => [
+                0 => 'left',
+                1 => 'center',
+                2 => 'right'
+            ],
+            'shift' => [
+                'type'=>'array',
+                'data' => [
+                    'alinea' => [
+                        'type' => 'integer',
+                    ],
+                    'indent' => [
+                        'type' => 'integer',
+                    ],
+                ]
+            ],
+        ],
         'header' => [
             'activated' => true,
             'shortcut' => 'CMD+SHIFT+H',
@@ -115,6 +135,22 @@ return [
                 'text' => [
                     'type' => 'string',
                     'allowedTags' => 'i,b,a[href],code[class],mark[class]',
+                ],
+                'alignment' => [
+                    0 => 'left',
+                    1 => 'center',
+                    2 => 'right'
+                ],
+                'shift' => [
+                    'type'=>'array',
+                    'data' => [
+                        'alinea' => [
+                            'type' => 'integer',
+                        ],
+                        'indent' => [
+                            'type' => 'integer',
+                        ],
+                    ]
                 ],
             ],
             'header' => [

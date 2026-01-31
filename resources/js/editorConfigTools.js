@@ -11,11 +11,18 @@ import RawTool from '@editorjs/raw';
 import Quote from '@editorjs/quote';
 import Marker from '@editorjs/marker';
 import LinkTool from '@editorjs/link';
+import ParagraphCustom from './components/paragraphCustom.js';
 
 export default class EditorConfigTools {
 
     static get getTools() {
         const tools = {}
+        if (editorJsConf.paragraph.activated) {
+            tools.paragraph = {
+                class: ParagraphCustom,
+                shortcut: editorJsConf.paragraph.shortcut
+            };
+        }
         if (editorJsConf.header.activated) {
             tools.header = {
                 class: Header,
