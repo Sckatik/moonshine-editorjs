@@ -5,12 +5,9 @@
     "isEntry": true
   },
   "resources/js/field.js": {
-    "file": "assets/field-BoFOjZ2B.js",
+    "file": "assets/field-BvUAMo6g.js",
     "name": "field",
     "src": "resources/js/field.js",
-    "isEntry": true,
-    "css": [
-      "assets/field-DUQMoa8-.css"
-    ]
+    "isEntry": true
   }
 }
