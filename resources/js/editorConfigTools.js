@@ -38,12 +38,17 @@ export default class EditorConfigTools {
         }
         if (editorJsConf.image.activated) {
             tools.image = {
-                class: CustomImage, config: {
+                class: CustomImage,
+                config: {
                     endpoints: {
-                        byFile: '/moonshine/editor-js-field/upload/file',
-                        byUrl: '/moonshine/editor-js-field/upload/url'
+                        byFile: '/admin/editor-js-field/upload/file',
+                        byUrl: '/admin/editor-js-field/upload/url'
+                    },
+                    additionalRequestHeaders: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content
                     }
-                }, shortcut: editorJsConf.image.shortcut
+                },
+                shortcut: editorJsConf.image.shortcut
             }
         }
         if (editorJsConf.quote.activated) {
@@ -88,7 +93,10 @@ export default class EditorConfigTools {
             tools.linkTool = {
                 class: LinkTool,
                 config: {
-                    endpoint: '/moonshine/editor-js-field/fetch/url',
+                    endpoint: '/admin/editor-js-field/fetch/url',
+                    additionalRequestHeaders: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content
+                    }
                 },
                 inlineToolbar: false,
                 shortcut: editorJsConf.link.shortcut

@@ -6,10 +6,16 @@ export default class CustomImage extends Image {
         console.log('removed');
         // access the image block's file data
         const {file} = this._data
-        axios.post('/moonshine/editor-js-field/delete/file', {
-            _method: 'delete',
-            urlFile: file.url
-        }).then((response) => console.log(response))
+        axios.post(
+            '/admin/editor-js-field/delete/file',
+            {
+                _method: 'delete',
+                urlFile: file.url
+            },
+            {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content,
+            }
+        ).then((response) => console.log(response))
             .catch((error) => console.log(error));
     }
 }
