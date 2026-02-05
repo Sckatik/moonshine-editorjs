@@ -10,7 +10,7 @@ class EditorJs extends Textarea
 {
     protected string $view = 'moonshine-editorjs::fields.editorJs';
 
-    public function changePreview()
+    public function previewMode(): static
     {
         $this->view = 'moonshine-editorjs::fields.editorJsPreview';
 
