@@ -9,4 +9,11 @@ use MoonShine\UI\Fields\Textarea;
 class EditorJs extends Textarea
 {
     protected string $view = 'moonshine-editorjs::fields.editorJs';
+
+    public function changePreview()
+    {
+        $this->view = 'moonshine-editorjs::fields.editorJsPreview';
+
+        return $this;
+    }
 }
