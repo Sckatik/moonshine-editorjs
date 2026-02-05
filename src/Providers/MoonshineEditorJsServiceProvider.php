@@ -57,8 +57,10 @@ final class MoonshineEditorJsServiceProvider extends ServiceProvider
             return;
         }
 
-        Route::prefix('moonshine/editor-js-field')
-            ->group(__DIR__ . '/../../routes/api.php');
+        Route::moonshine(static function (): void {
+            Route::prefix('editor-js-field')
+                ->group(__DIR__ . '/../../routes/api.php');
+        }, withAuthenticate: true);
     }
 
 }
