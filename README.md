@@ -86,11 +86,34 @@ $post = Post::find(1);
 echo $post->body;
 ```
 
+## Display on the detail page in the MoonShine admin panel.
+
+To display EditorJs on the resource detail page, you need to:
+In the resource’s DetailPage, call EditorJs with the previewMode() function.
+
+https://getmoonshine.app/en/docs/4.x/model-resource/pages#detail-page
+
+Example:
+
+```php
+
+    use Sckatik\MoonshineEditorJs\Fields\EditorJs;
+    
+    protected function fields(): iterable
+    {
+        return [
+            ID::make(),
+            Text::make("Название", "name"),
+            EditorJs::make('EditorJS', 'content')->previewMode()
+        ];
+    }
+```
+
 ## Upload Image
 The Spatie/Image package is used to upload images.
 you need to install the extension in php - https://www.php.net/manual/en/book.image.php
 
-## For Laravel 11
+## For Laravel 11 and 12+
 Сhange the path for uploading images from disk=>local to public in the moonshine-editor-js config in the toolSettings.image.disk block if you have a standard configuration filesystems.php not unfaithful. 
 If there are any changes, then it's up to you.
 
