@@ -156,20 +156,9 @@ window.addEventListener('DOMContentLoaded', initAllEditors);
 document.addEventListener('alpine:init', initAllEditors);
 
 /**
- * MutationObserver отслеживает добавление новых DOM-элементов.
- * Нужен для автоматической инициализации EditorJS при динамическом
- * добавлении блоков через пакет moonshine/layouts-field.
+ * Слушаем событие layouts:block-added от пакета moonshine/layouts-field.
+ * Инициализируем EditorJS для всех новых полей после добавления блока.
  */
-const editorObserver = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-        mutation.addedNodes.forEach((node) => {
-            if (node.nodeType !== Node.ELEMENT_NODE) return;
-
-            const textareas = node.matches('[data-type="editor-js"]') ? [node] : [...node.querySelectorAll('[data-type="editor-js"]')];
-
-            textareas.forEach(initEditorFromTextarea);
-        });
-    });
+document.addEventListener('layouts:block-added', () => {
+    initAllEditors();
 });
-
-editorObserver.observe(document.body, { childList: true, subtree: true });
