@@ -109,7 +109,7 @@ export default class EditorConfigTools {
                 shortcut: editorJsConf.inlineCode.shortcut
             };
         }
-       //adding custom tool
+        //adding custom tool
         if (editorJsConf.custom) {
             Object.keys(editorJsConf.custom).forEach(function(key) {
                 tools[key] = editorJsConf.custom[key];
