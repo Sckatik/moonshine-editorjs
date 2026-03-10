@@ -166,12 +166,34 @@ function initAllEditors() {
 
 document.addEventListener('DOMContentLoaded', initAllEditors);
 
-document.addEventListener('alpine:init', initAllEditors);
-
+// 1. Layouts field
 document.addEventListener('layouts:block-added', () => {
     initAllEditors();
 });
 
-document.addEventListener('tablebuilder:row-added', () => {
+// 2. TableBuilder (Json/Repeater)
+document.addEventListener('alpine:init', () => {
     initAllEditors();
+
+    const forms = document.querySelectorAll('form[data-component]');
+    forms.forEach((form) => {
+        const formName = form.getAttribute('data-component');
+        document.addEventListener('show_when_refresh:' + formName, (e) => {
+            setTimeout(() => initAllEditors(), 10);
+        });
+    });
 });
+
+// 3. Modal/OffCanvas async - MutationObserver
+const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+            if (node.nodeType === 1 &&
+                (node.querySelector?.('[data-type="editor-js"]') ||
+                    node.dataset?.type === 'editor-js')) {
+                setTimeout(() => initAllEditors(), 10);
+            }
+        });
+    });
+});
+observer.observe(document.body, { childList: true, subtree: true });
