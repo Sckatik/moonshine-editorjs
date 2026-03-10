@@ -171,3 +171,7 @@ document.addEventListener('alpine:init', initAllEditors);
 document.addEventListener('layouts:block-added', () => {
     initAllEditors();
 });
+
+document.addEventListener('tablebuilder:row-added', () => {
+    initAllEditors();
+});
