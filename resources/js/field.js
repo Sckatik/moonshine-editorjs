@@ -116,7 +116,13 @@ const i18nConfig = {
 
 window.editors = window.editors || {};
 
-function createEditor(textarea, container, editorId) {
+const editorsMap = new WeakMap();
+
+function createEditor(textarea, container) {
+    if (editorsMap.has(textarea)) {
+        return editorsMap.get(textarea);
+    }
+
     const data = JSON.parse(textarea.value || '{}');
 
     const editor = new EditorJS({
@@ -131,20 +137,26 @@ function createEditor(textarea, container, editorId) {
     });
 
     editor.isReady
-        .then(() => console.log(`Editor.js (${editorId}) is ready to work!`))
-        .catch((reason) => console.log(`Editor.js (${editorId}) initialization failed because of ${reason}`));
+        .then(() => console.log(`Editor.js is ready to work!`))
+        .catch((reason) => console.log(`Editor.js initialization failed because of ${reason}`));
 
-    window.editors[editorId] = editor;
+    editorsMap.set(textarea, editor);
+
+    if (textarea.id) {
+        window.editors[textarea.id] = editor;
+    }
+
     return editor;
 }
 
 function initEditorFromTextarea(textarea) {
-    const editorId = textarea.id;
-    if (window.editors[editorId]) return;
+    if (editorsMap.has(textarea)) {
+        return;
+    }
 
     const container = textarea.parentElement?.querySelector('.editorjs-container');
     if (container) {
-        createEditor(textarea, container, editorId);
+        createEditor(textarea, container);
     }
 }
 
@@ -152,13 +164,10 @@ function initAllEditors() {
     document.querySelectorAll('[data-type="editor-js"]').forEach(initEditorFromTextarea);
 }
 
-window.addEventListener('DOMContentLoaded', initAllEditors);
+document.addEventListener('DOMContentLoaded', initAllEditors);
+
 document.addEventListener('alpine:init', initAllEditors);
 
-/**
- * Слушаем событие layouts:block-added от пакета moonshine/layouts-field.
- * Инициализируем EditorJS для всех новых полей после добавления блока.
- */
 document.addEventListener('layouts:block-added', () => {
     initAllEditors();
 });
