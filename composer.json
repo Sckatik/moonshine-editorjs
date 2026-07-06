@@ -20,21 +20,20 @@
         }
     ],
     "require": {
-        "php": "^8.0|^8.1|^8.2",
+        "php": "^8.2",
         "ext-curl": "*",
-        "ext-json": "*",
         "ext-dom": "*",
-        "codex-team/editor.js": "*",
+        "ext-fileinfo": "*",
+        "ext-json": "*",
+        "codex-team/editor.js": "^2.0",
         "guzzlehttp/guzzle": "^7.0",
-        "illuminate/events": "^10.0 || ^12.0",
-        "spatie/image": "^3.0",
-        "ext-fileinfo": "*"
-
+        "moonshine/moonshine": "^4.0",
+        "spatie/image": "^3.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^11.0",
-        "orchestra/testbench": "^9.0",
-        "rector/rector": "^1.0"
+        "orchestra/testbench": "^10.0 || ^11.0",
+        "phpunit/phpunit": "^11.0 || ^12.0",
+        "rector/rector": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -42,7 +41,7 @@
         }
     },
     "conflict": {
-       "moonshine/moonshine": "<4.0"
+        "moonshine/moonshine": "<4.0"
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
