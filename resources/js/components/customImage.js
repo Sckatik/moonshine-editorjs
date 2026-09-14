@@ -2,6 +2,10 @@ import Image from "@editorjs/image"
 
 // extend the image tool to enhance the image removal lifecycle
 export default class CustomImage extends Image {
+    static get pasteConfig() {
+        return false;
+    }
+
     removed() {
         console.log('removed');
         // access the image block's file data

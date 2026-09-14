@@ -9,6 +9,7 @@ use EditorJS\EditorJSException;
 use Exception;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
+use Sckatik\MoonshineEditorJs\Support\EditorJsToolRegistry;
 
 final class RenderEditorJs
 {
@@ -23,13 +24,23 @@ final class RenderEditorJs
     public function render(string $data): string
     {
         try {
-            $configJson = json_encode(config('moonshine-editor-js.renderSettings') ?: []);
+            $registry = app(EditorJsToolRegistry::class);
+
+            $renderSettings = array_merge_recursive(
+                (array) config('moonshine-editor-js.renderSettings', []),
+                $registry->getRenderSettings(),
+            );
+
+            $configJson = json_encode($renderSettings ?: []);
 
             $editor = new EditorJS($data, $configJson);
 
             $renderedBlocks = [];
             foreach ($editor->getBlocks() as $block) {
-                $viewName = "moonshine-editorjs::blocks." . Str::snake($block['type'], '-');
+                $registeredView = $registry->getBlockView($block['type']);
+
+                $viewName = $registeredView
+                    ?? "moonshine-editorjs::blocks." . Str::snake($block['type'], '-');
 
                 if (!View::exists($viewName)) {
                     $viewName = 'moonshine-editorjs::blocks.not-found';

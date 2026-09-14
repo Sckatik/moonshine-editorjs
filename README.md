@@ -139,6 +139,51 @@ To add your component, you need the following:
 Using the js css connection method is at the discretion of the developer
 
 3. You also need to add a blade file to /resources/views/vendor/moonshine-editorjs/blocks with data processing from your component
-   for output to the frontend or via the api.
+   for output to the frontend or via the api. 
+
+## Extension API
+
+Other packages can add their own Editor.js tools and renderable block types without modifying this package and without a composer dependency on it.
+
+### JS: register a tool
+
+Register the tool class before the editor initializes (a classic script registering on `DOMContentLoaded` is fine — editors boot on `DOMContentLoaded` and on dynamic DOM insertions):
+
+```js
+window.MoonShineEditorJs.registerTool('myTool', {
+    class: MyTool, // editor.js block tool class
+    config: { /* tool config */ },
+    shortcut: 'CMD+ALT+M',
+});
+```
+
+Registered tools are merged into the editor config when each editor instance is created, so they also work inside dynamically added fields (layouts, JSON field rows, async modals).
+
+### PHP: register a renderable block
+
+In your package's ServiceProvider `boot()`:
+
+```php
+use Sckatik\MoonshineEditorJs\Support\EditorJsToolRegistry;
+
+if (class_exists(EditorJsToolRegistry::class)) {
+    $registry = app(EditorJsToolRegistry::class);
+
+    $registry->registerBlock('myTool', 'my-package::blocks.my-tool', [
+        // validation config for the server-side parser (renderSettings shape)
+        'text' => ['type' => 'string', 'allowedTags' => 'i,b,a[href]'],
+    ]);
+
+    $registry->registerToolSettings('myTool', [
+        'activated' => true,          // lands in the editorJsConf global
+        'baseUrl' => '/storage',
+    ]);
+}
+```
+
+`RenderEditorJs` resolves the view for a registered type from the registry first, then falls back to `moonshine-editorjs::blocks.<type>`. Block validation config is merged into `renderSettings` automatically. The `class_exists` gate keeps the integration soft: without this package installed the code is silently skipped.
+
+Reference integration: `yurizoom/moonshine-media-manager` registers the `mediaImage` block ("Image from Media Manager") that picks images from the media manager offcanvas.
+
 
 

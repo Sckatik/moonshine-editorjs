@@ -7,6 +7,7 @@ namespace Sckatik\MoonshineEditorJs\Providers;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Sckatik\MoonshineEditorJs\RenderEditorJs;
+use Sckatik\MoonshineEditorJs\Support\EditorJsToolRegistry;
 
 final class MoonshineEditorJsServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,10 @@ final class MoonshineEditorJsServiceProvider extends ServiceProvider
     public function register(): void
     {
         //
+
+        $this->mergeConfigFrom(__DIR__.'/../config/moonshine-editor-js.php', 'moonshine-editor-js');
+
+        $this->app->singleton(EditorJsToolRegistry::class);
 
         $this->app->singleton('moonshine-editorjs', static function () {
             return new RenderEditorJs();

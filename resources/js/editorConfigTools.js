@@ -116,6 +116,14 @@ export default class EditorConfigTools {
             });
         }
 
+        // tools registered at runtime via window.MoonShineEditorJs.registerTool()
+        const registeredTools = window.MoonShineEditorJs?.tools;
+        if (registeredTools) {
+            Object.keys(registeredTools).forEach(function(key) {
+                tools[key] = registeredTools[key];
+            });
+        }
+
         return tools;
     }
 
